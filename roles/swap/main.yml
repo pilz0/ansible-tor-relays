@@ -1,0 +1,10 @@
+---
+- name: setup swap
+  hosts: relays
+  become: yes
+  vars:
+    swap_file_size_mb: '4096'
+    swap_file_state: present 
+
+  roles:
+    - geerlingguy.swap

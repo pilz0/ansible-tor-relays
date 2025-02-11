@@ -1,0 +1,33 @@
+---
+- name: Tor-Relay setup
+  hosts: relays
+  become: yes
+
+  vars:
+    contact_info: "darmstadt@fridaysforfuture.de #fckafd"
+    tor_contact_email: darmstadt@fridaysforfuture.de
+    hostname: "{{ inventory_hostname }}"
+    ipv6_enabled: "{{ ipv6_enabled_conf | default('yes') }}"
+    tor_exit_enabled: false
+    kilobytes_burst: "{{ kilobytes_burst_conf | default('') }}"
+    kilobytes_rate: "{{ kilobytes_rate_conf | default('') }}"
+    tor_family: > 
+      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,
+      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+  roles:
+    - oefenweb.fail2ban
+    - hifis.unattended_upgrades
+    - pkgs
+    - ssh
+    - swap
+    - ensure-tor-gpg
+    - update-upgrade-all
+    - setup-apparmor
+    - install-and-configure-tor
+    - set-family
+    - firewall
+  tasks:
+    - name: Set hostname
+      hostname:
+        name: "{{ inventory_hostname }}"

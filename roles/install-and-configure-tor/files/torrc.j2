@@ -1,0 +1,30 @@
+Log notice file /var/log/tor/notices.log
+
+RunAsDaemon 1
+
+DataDirectory /var/lib/tor
+
+ORPort {{ ipv4_address }}:443
+{% if ipv6_address != "" %}
+ORPort [{{ ipv6_address }}]:443
+{% endif %}
+
+Address {{ ipv4_address }}
+
+OutboundBindAddress {{ ipv4_address }}
+
+Nickname {{ inventory_hostname }}
+
+{% if kilobytes_rate != "" %}
+RelayBandwidthRate {{ kilobytes_rate }} KB
+{% endif %}
+{% if kilobytes_burst != "" %}
+RelayBandwidthBurst {{ kilobytes_burst }} KB
+{% endif %}
+
+ContactInfo {{ contact_info }}
+
+
+MyFamily {{ tor_family }}
+
+Sandbox 1

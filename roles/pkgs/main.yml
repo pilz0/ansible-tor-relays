@@ -1,0 +1,93 @@
+---
+
+- name: installing Packages
+  hosts: relays
+  become: yes
+
+  tasks:
+    - name: install apt-transport-https
+      apt:
+        name: apt-transport-https
+        state: latest
+
+    - name: apt install speedtest-cli
+      apt:
+        name: speedtest-cli
+        state: latest
+
+    - name: apt install gpg
+      apt:
+        name: gpg
+        state: latest
+
+    - name: apt install neofetch
+      apt:
+        name: neofetch
+        state: latest
+
+    - name: apt install btop
+      apt:
+        name: btop
+        state: latest
+
+    - name: apt install tmux
+      apt:
+        name: tmux
+        state: latest
+
+    - name: apt install htop
+      apt:
+        name: htop
+        state: latest
+
+    - name: apt install nmap
+      apt:
+        name: nmap
+        state: latest
+
+    - name: apt install curl
+      apt:
+        name: curl
+        state: latest
+
+    - name: apt install wget
+      apt:
+        name: wget
+        state: latest
+
+    - name: apt install git
+      apt:
+        name: git
+        state: latest
+
+    - name: apt install unattended-upgrades
+      apt:
+        name: unattended-upgrades
+        state: latest
+
+    - name: apt install apt-listchanges
+      apt:
+        name: apt-listchanges
+        state: latest
+
+    - name: apt install magic wormhole
+      apt:
+        name: magic-wormhole
+        state: latest
+
+    - name: apt install ufw
+      apt:
+        name: ufw
+        state: latest
+
+    - name: Ensure unattended upgrades configuration is present
+      copy:
+        dest: /etc/apt/apt.conf.d/50unattended-upgrades
+        content: |
+          Unattended-Upgrade::Origins-Pattern {
+              "origin=Debian,codename=${distro_codename},label=Debian-Security";
+              "origin=TorProject";
+          };
+        owner: root
+        group: root
+        mode: '0644'

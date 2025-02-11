@@ -1,0 +1,12 @@
+relays:
+  hosts:
+ #  "tor1":
+ #    ansible_host: tor1.pilz.foo
+ #    ansible_user: root
+#   "tor2":
+#     ansible_host: tor2.pilz.foo
+#     ansible_user: root
+   "tor3":
+     ansible_host: 50.85.248.248
+     ansible_user: azureuser
+     become: yes

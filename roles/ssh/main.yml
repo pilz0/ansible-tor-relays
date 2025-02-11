@@ -1,0 +1,12 @@
+---
+- name: ssh setup
+  hosts: relays
+  become: yes
+  collections:
+    - devsec.hardening
+  tasks:
+    - name: Set authorized keys taken from url
+      authorized_key:
+        user: root
+        state: present
+        key: https://github.com/pilz0.keys
