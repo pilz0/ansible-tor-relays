@@ -26,7 +26,10 @@
     - setup-apparmor
     - install-and-configure-tor
     - set-family
+    - restrict-kernel
+    - get-node-hash
     - firewall
+
   tasks:
     - name: Set hostname
       hostname:
