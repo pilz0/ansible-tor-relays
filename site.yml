@@ -29,7 +29,8 @@
     - restrict-kernel
     - get-node-hash
     - firewall
-
+    - devsec.hardening.os_hardening
+    - sshharden
   tasks:
     - name: Set hostname
       hostname:
