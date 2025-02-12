@@ -1,0 +1,8 @@
+---
+collections:
+  - name: manala.roles
+  - name: devsec.hardening
+roles:
+  - name: Oefenweb.fail2ban
+  - name: hifis.unattended_upgrades
+  - name: geerlingguy.swap

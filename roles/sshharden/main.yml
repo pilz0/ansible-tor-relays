@@ -1,0 +1,9 @@
+---
+- name: add authorized keys
+  become: yes
+  collections:
+    - devsec.hardening
+  roles:
+    - devsec.hardening.ssh_hardening
+  vars:
+    ssh_permit_root_login: 'without-password'

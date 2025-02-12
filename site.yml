@@ -27,6 +27,8 @@
     - install-and-configure-tor
     - set-family
     - firewall
+    - devsec.hardening.os_hardening
+    - sshharden
   tasks:
     - name: Set hostname
       hostname:
