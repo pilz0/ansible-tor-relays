@@ -1,0 +1,20 @@
+- name: backup keys
+  hosts: relays
+  become: yes
+
+  tasks:
+    - name: Fetch keys
+      ansible.builtin.fetch:
+        src: /var/lib/tor/keys/{{ item }}
+        dest: ../../tor-keys/{{ inventory_hostname }}/{{ item }}
+        flat: yes
+      loop:
+        - ed25519_master_id_secret_key
+        - ed25519_master_id_public_key
+        - ed25519_signing_cert
+        - ed25519_signing_secret_key
+        - secret_id_key
+        - secret_onion_key
+        - secret_onion_key.old
+        - secret_onion_key_ntor
+        - secret_onion_key_ntor.old

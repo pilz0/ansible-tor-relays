@@ -13,7 +13,7 @@ Address {{ ipv4_address }}
 
 OutboundBindAddress {{ ipv4_address }}
 
-Nickname {{ inventory_hostname }}
+Nickname {{ ansible_hostname }}
 
 {% if kilobytes_rate != "" %}
 RelayBandwidthRate {{ kilobytes_rate }} KB
@@ -23,8 +23,7 @@ RelayBandwidthBurst {{ kilobytes_burst }} KB
 {% endif %}
 
 ContactInfo {{ contact_info }}
-
-
+HardwareAccel 1
 MyFamily {{ tor_family }}
 
 Sandbox 1

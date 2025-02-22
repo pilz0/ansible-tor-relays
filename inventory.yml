@@ -1,12 +1,22 @@
-relays:
+etwas:
   hosts:
- #  "tor1":
- #    ansible_host: tor1.pilz.foo
- #    ansible_user: root
-#   "tor2":
-#     ansible_host: tor2.pilz.foo
-#     ansible_user: root
-   "tor3":
-     ansible_host: 34.41.238.199
-     ansible_user: minecraftkugelfisch
-     become: yes
+
+pilz:
+  hosts:
+    tor1.ketamin.trade:
+      ansible_user: root
+      ansible_host: tor1.ketamin.trade
+
+    tor2.ketamin.trade:
+      ansible_user: root
+      ansible_host: tor2.ketamin.trade
+
+
+all:
+  children:
+    relays:
+
+relays:
+  children:
+    etwas:
+    pilz:

@@ -1,10 +1,30 @@
 ---
 - name: add authorized keys
+  hosts: etwas
+  become: yes
+  tasks:
+    - name: Set authorized keys taken from url
+      authorized_key:
+        user: "{{ ansible_user }}"
+        state: present
+        key: https://github.com/EinEtw4s.keys
+
+- name: add authorized keys
   hosts: relays
   become: yes
   tasks:
     - name: Set authorized keys taken from url
       authorized_key:
-        user: root
+        user: "{{ ansible_user }}"
         state: present
         key: https://github.com/pilz0.keys
+
+- name: ssh hardening
+  become: yes
+  hosts: relays
+  collections:
+    - devsec.hardening
+  roles:
+    - devsec.hardening.ssh_hardening
+  vars:
+    ssh_permit_root_login: 'without-password'

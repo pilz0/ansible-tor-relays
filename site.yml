@@ -26,12 +26,31 @@
     - setup-apparmor
     - install-and-configure-tor
     - set-family
-    - restrict-kernel
-    - get-node-hash
     - firewall
     - devsec.hardening.os_hardening
     - sshharden
+    - backup-keys
+    - prometheus.prometheus.fail2ban_exporter
+    - monitoring
+    
   tasks:
     - name: Set hostname
       hostname:
         name: "{{ inventory_hostname }}"
+
+- name: etwas vars
+  hosts: etwas
+  become: yes
+#    tor_family: > 
+#      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,
+#      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+- name: pilz vars
+  hosts: pilz
+  become: yes
+
+  vars:
+#    tor_family: > 
+#      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,
+#      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+

@@ -1,9 +1,0 @@
----
-- name: update
-  hosts: relays
-  become: yes
-
-  roles:
-    - update-upgrade-all
-    - reload-tor
-    - restart-tor
