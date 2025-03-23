@@ -1,0 +1,7 @@
+
+  - name: Set authorized keys from GitHub
+    authorized_key:
+      user: "{{ ansible_user }}"
+      state: present
+      key: https://github.com/{{ item }}.keys
+    loop: "{{ github_users }}"

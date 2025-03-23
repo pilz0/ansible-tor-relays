@@ -1,0 +1,7 @@
+---
+- name: Tor-Relay setup
+  hosts: relays
+  become: yes
+
+  roles:
+    - install-and-configure-tor

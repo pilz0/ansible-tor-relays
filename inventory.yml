@@ -1,5 +1,9 @@
 etwas:
   hosts:
+    tor1.catgirl.dog:
+      ansible_user: root
+      ansible_host: tor1.catgirl.dog
+
 
 pilz:
   hosts:
@@ -11,6 +15,9 @@ pilz:
       ansible_user: root
       ansible_host: tor2.ketamin.trade
 
+    tor3.ketamin.trade:
+      ansible_user: root
+      ansible_host: tor3.ketamin.trade
 
 all:
   children:

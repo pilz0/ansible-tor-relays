@@ -1,21 +1,22 @@
 ---
+- name: set vars
+  hosts: etwas
+  become: yes
+  vars_files:
+    - group_vars/etwas.yml
+
+- name: set vars
+  hosts: pilz
+  become: yes
+  vars_files:
+    - group_vars/pilz.yml
+
 - name: Tor-Relay setup
   hosts: relays
   become: yes
 
-  vars:
-    contact_info: "darmstadt@fridaysforfuture.de #fckafd"
-    tor_contact_email: darmstadt@fridaysforfuture.de
-    hostname: "{{ inventory_hostname }}"
-    ipv6_enabled: "{{ ipv6_enabled_conf | default('yes') }}"
-    tor_exit_enabled: false
-    kilobytes_burst: "{{ kilobytes_burst_conf | default('') }}"
-    kilobytes_rate: "{{ kilobytes_rate_conf | default('') }}"
-    tor_family: > 
-      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,
-      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
   roles:
+    - set-hostname
     - oefenweb.fail2ban
     - hifis.unattended_upgrades
     - pkgs
@@ -32,25 +33,3 @@
     - backup-keys
     - prometheus.prometheus.fail2ban_exporter
     - monitoring
-    
-  tasks:
-    - name: Set hostname
-      hostname:
-        name: "{{ inventory_hostname }}"
-
-- name: etwas vars
-  hosts: etwas
-  become: yes
-#    tor_family: > 
-#      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,
-#      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
-- name: pilz vars
-  hosts: pilz
-  become: yes
-
-  vars:
-#    tor_family: > 
-#      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx,
-#      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-

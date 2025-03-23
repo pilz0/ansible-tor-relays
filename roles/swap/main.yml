@@ -4,7 +4,8 @@
   become: yes
   vars:
     swap_file_size_mb: '4096'
-    swap_file_state: present 
+    swap_file_state: present
+    swappiness: 100
 
   roles:
     - geerlingguy.swap

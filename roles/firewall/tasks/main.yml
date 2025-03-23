@@ -45,6 +45,7 @@
         - 217.184.0.0/13
         - 2a01:c00::/26
         - 2a02:3000::/23
+
     - name: Allow access to port 9100 for specified IP ranges
       community.general.ufw:
         rule: allow
@@ -83,8 +84,6 @@
         - 217.184.0.0/13
         - 2a01:c00::/26
         - 2a02:3000::/23
-    
-
 
     - community.general.ufw:
         rule: reject
