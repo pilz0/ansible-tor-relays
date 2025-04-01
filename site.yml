@@ -16,18 +16,18 @@
   become: yes
 
   roles:
+    - firewall
+    - autorestart
+    - confswap
+    - install-and-configure-tor
     - set-hostname
     - oefenweb.fail2ban
     - hifis.unattended_upgrades
     - pkgs
     - ssh
-    - swap
-    - ensure-tor-gpg
     - update-upgrade-all
     - setup-apparmor
-    - install-and-configure-tor
     - set-family
-    - firewall
     - devsec.hardening.os_hardening
     - sshharden
     - backup-keys

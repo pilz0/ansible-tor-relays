@@ -3,7 +3,9 @@ etwas:
     tor1.catgirl.dog:
       ansible_user: root
       ansible_host: tor1.catgirl.dog
-
+    tor2.catgirl.dog:
+      ansible_user: root
+      ansible_host: tor2.catgirl.dog
 
 pilz:
   hosts:

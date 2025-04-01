@@ -1,12 +1,20 @@
 ---
-    - community.general.ufw:
-        rule: allow
-        name: OpenSSH
-    
-    - community.general.ufw:
-        rule: allow
-        port: '443'  # Tor
-    
+    - name: deny everything and enable UFW
+      community.general.ufw:
+        state: enabled
+        policy: deny
+        log: true
+
+    - name: Deny all access to port 9100
+      community.general.ufw:
+        rule: deny
+        port: '9100'
+
+    - name: Deny all access to port 9191
+      community.general.ufw:
+        rule: deny
+        port: '9191'
+
     - name: Allow access to port 9100 for specified IP ranges
       community.general.ufw:
         rule: allow
@@ -84,8 +92,10 @@
         - 217.184.0.0/13
         - 2a01:c00::/26
         - 2a02:3000::/23
-
     - community.general.ufw:
-        rule: reject
-        log: true
+        rule: allow
+        name: OpenSSH
     
+    - community.general.ufw:
+        rule: allow
+        port: '443'  # Tor

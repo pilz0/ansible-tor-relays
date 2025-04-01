@@ -1,0 +1,17 @@
+---
+- name: apt install Cron
+  apt:
+    name: cron
+    state: latest
+
+- name: Start service httpd, if not started
+  ansible.builtin.service:
+    name: cron
+    state: started
+
+- name: "Setup Autorestart"
+  ansible.builtin.cron:
+    name: "Setup Autorestart"
+    minute: "0"
+    hour: "3"
+    job: "systemctl restart tor"
