@@ -1,0 +1,15 @@
+
+pilz:
+  hosts:
+    tor3.ketamin.trade:
+      ansible_user: root
+      ansible_host: tor3.ketamin.trade
+
+all:
+  children:
+    relays:
+
+relays:
+  children:
+    etwas:
+    pilz:

@@ -1,101 +1,53 @@
 ---
-    - name: deny everything and enable UFW
-      community.general.ufw:
-        state: enabled
-        policy: deny
-        log: true
+- name: Ensure ufw is installed
+  become: yes
+  ansible.builtin.apt:
+    name: ufw
+    state: present
 
-    - name: Deny all access to port 9100
-      community.general.ufw:
-        rule: deny
-        port: '9100'
+- name: reset ufw
+  community.general.ufw:
+    state: reset
 
-    - name: Deny all access to port 9191
-      community.general.ufw:
-        rule: deny
-        port: '9191'
+- name: deny everything and enable UFW
+  community.general.ufw:
+    state: enabled
+    policy: deny
+    log: true
 
-    - name: Allow access to port 9100 for specified IP ranges
-      community.general.ufw:
-        rule: allow
-        port: '9100'
-        src: "{{ item }}"
-      loop:
-        - 2.208.0.0/13
-        - 2.240.0.0/13
-        - 5.4.0.0/14
-        - 46.114.0.0/15
-        - 62.52.0.0/14
-        - 62.109.64.0/18
-        - 77.0.0.0/12
-        - 77.176.0.0/12
-        - 78.48.0.0/13
-        - 80.171.0.0/16
-        - 82.113.96.0/19
-        - 85.176.0.0/13
-        - 89.12.0.0/14
-        - 89.204.128.0/19
-        - 92.224.0.0/13
-        - 93.128.0.0/13
-        - 95.112.0.0/13
-        - 176.0.0.0/13
-        - 185.93.236.0/22
-        - 185.98.140.0/22
-        - 188.46.0.0/16
-        - 193.102.88.0/22
-        - 193.189.224.0/19
-        - 195.71.0.0/16
-        - 212.94.224.0/19
-        - 213.20.0.0/16
-        - 213.39.128.0/17
-        - 213.191.64.0/19
-        - 217.48.0.0/14
-        - 217.184.0.0/13
-        - 2a01:c00::/26
-        - 2a02:3000::/23
+- name: Allow access for specified IPv4 ranges
+  community.general.ufw:
+    rule: allow
+    src: "{{ item }}"
+    insert_relative_to: first-ipv4
+  loop:
+    - 130.83.0.0/16
+    - 94.142.240.0/21
 
-    - name: Allow access to port 9100 for specified IP ranges
-      community.general.ufw:
-        rule: allow
-        port: '9191'
-        src: "{{ item }}"
-      loop:
-        - 2.208.0.0/13
-        - 2.240.0.0/13
-        - 5.4.0.0/14
-        - 46.114.0.0/15
-        - 62.52.0.0/14
-        - 62.109.64.0/18
-        - 77.0.0.0/12
-        - 77.176.0.0/12
-        - 78.48.0.0/13
-        - 80.171.0.0/16
-        - 82.113.96.0/19
-        - 85.176.0.0/13
-        - 89.12.0.0/14
-        - 89.204.128.0/19
-        - 92.224.0.0/13
-        - 93.128.0.0/13
-        - 95.112.0.0/13
-        - 176.0.0.0/13
-        - 185.93.236.0/22
-        - 185.98.140.0/22
-        - 188.46.0.0/16
-        - 193.102.88.0/22
-        - 193.189.224.0/19
-        - 195.71.0.0/16
-        - 212.94.224.0/19
-        - 213.20.0.0/16
-        - 213.39.128.0/17
-        - 213.191.64.0/19
-        - 217.48.0.0/14
-        - 217.184.0.0/13
-        - 2a01:c00::/26
-        - 2a02:3000::/23
-    - community.general.ufw:
-        rule: allow
-        name: OpenSSH
-    
-    - community.general.ufw:
-        rule: allow
-        port: '443'  # Tor
+- name: Allow access for specified IPv6 ranges
+  community.general.ufw:
+    rule: allow
+    src: "{{ item }}"
+    insert_relative_to: first-ipv6
+  loop:
+    - 2a0e:8f02:f017::/48
+    - 2a01:c00::/26
+    - 2001:41b8::/29
+    - 2a02:3000::/23
+
+- name: deny incoming by default
+  community.general.ufw:
+    rule: deny
+    port: 9100
+    insert_relative_to: last-ipv4
+
+- community.general.ufw:
+    rule: allow
+    name: OpenSSH
+
+- community.general.ufw:
+    rule: allow
+    port: '443'  # Tor
+
+- community.general.ufw:
+    state: reloaded

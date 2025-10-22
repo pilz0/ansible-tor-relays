@@ -3,9 +3,11 @@ contact_info: "darmstadt@fridaysforfuture.de #fckafd"
 tor_contact_email: darmstadt@fridaysforfuture.de
 hostname: "{{ inventory_hostname }}"
 ipv6_enabled: yes
+ExitRelay: 0
+sandbox: 0
 kilobytes_burst: "{{ kilobytes_burst_conf | default('') }}"
 kilobytes_rate: "{{ kilobytes_rate_conf | default('') }}"
 tor_family:
 github_users:
   - pilz0
-  - einetw4s
+  - eetwas

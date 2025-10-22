@@ -15,3 +15,4 @@
     minute: "0"
     hour: "3"
     job: "systemctl restart tor"
+    disabled: true

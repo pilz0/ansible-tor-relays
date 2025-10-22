@@ -16,20 +16,20 @@
   become: yes
 
   roles:
+    # - install-and-configure-tor
+    # - autorestart
     - firewall
-    - autorestart
-    - confswap
-    - install-and-configure-tor
-    - set-hostname
-    - oefenweb.fail2ban
-    - hifis.unattended_upgrades
-    - pkgs
-    - ssh
-    - update-upgrade-all
-    - setup-apparmor
-    - set-family
-    - devsec.hardening.os_hardening
-    - sshharden
-    - backup-keys
-    - prometheus.prometheus.fail2ban_exporter
-    - monitoring
+    # - autorestart
+    # - confswap
+    # - set-hostname
+    # - hifis.unattended_upgrades
+    # - pkgs
+    # - ssh
+    # - update-upgrade-all
+    # - setup-apparmor
+    # - set-family
+    # - devsec.hardening.os_hardening
+    # - sshharden
+    # - backup-keys
+    # - prometheus.prometheus.fail2ban_exporter
+    # - monitoring

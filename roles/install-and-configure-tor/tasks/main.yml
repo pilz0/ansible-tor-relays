@@ -1,4 +1,16 @@
 ---
+- name: Ensure apt-transport-https is installed
+  become: yes
+  ansible.builtin.apt:
+    name: apt-transport-https
+    state: present
+    update_cache: yes
+- name: Ensure gnupg is installed
+  become: yes
+  ansible.builtin.apt:
+    name: gnupg
+    state: present
+    update_cache: yes
 - name: Ensure torproject gpg key is installed (A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89) #credits; https://github.dev/nusenu/ansible-relayor
   become: yes
   apt_key:
