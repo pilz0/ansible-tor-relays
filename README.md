@@ -1,5 +1,6 @@
 # ansible-tor-relays
-This repo contains Ansible Playbooks to set up my Tor Relays running Debian.
+
+This repository contains Ansible playbooks to set up my Tor relays running Debian.
 
 ## Credits
-* I used some stuff from https://github.com/cozybear-dev/ansible-tor, i needed a few modifications and i had to simplify the setup a bit.
+- This project uses code from https://github.com/cozybear-dev/ansible-tor. I made a few modifications and simplified the setup.
